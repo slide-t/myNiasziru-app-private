@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cards-store-v2.0'; // Change 'v1' to 'v2', 'v3', etc. with each upload
+const CACHE_NAME = 'cards-store-v4.0'; // Change 'v1' to 'v2', 'v3', etc. with each upload
 
 const FILES_TO_CACHE = [
   'index.html',
