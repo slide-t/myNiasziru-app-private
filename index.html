@@ -5,10 +5,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>بطاقات عربية</title>
 
-  <!-- Google Font -->
+  <!-- Optional Hosted Font -->
+  <style>
+    @font-face {
+      font-family: 'UthmanTaha';
+      src: url('fonts/KFGQPC-Uthman-Taha-Naskh-Regular.ttf') format('truetype');
+      font-weight: bold;
+    }
+  </style>
+  <!-- Google Font Fallback -->
   <link href="https://fonts.googleapis.com/css2?family=Lateef&display=swap" rel="stylesheet">
 
-  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #f9f9f9;
+      font-family: 'UthmanTaha', 'Lateef', serif;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      direction: rtl;
+    }
+    .card-container {
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      height: 100%;
+    }
+    .card.active {
+      display: flex;
+    }
+    h2 {
+      color: red;
+      margin-bottom: 15px;
+      font-size: 2rem;
+      text-align: center;
+    }
+    p {
+      color: black;
+      line-height: 2.5;
+      font-size: 1.8rem;
+      white-space: pre-line;
+    }
+    .quote {
+      color: red;
+      font-weight: bold;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-container">
+
+    <!-- Card 1 -->
+    <div class="card active">
+      <h2>١</h2>
+      <p>
+        <span class="quote">اللهم يا ألف</span> صل وسلم على الباء ونقطته وشكلته، صلاة تُؤلف لنا بها يا واحد يا أحد القلوب، وتفتح لنا الأبواب المغلقة بسر الألف والباء والنقطة والشكلة يا ذا الجلال والإكرام.
+      </p>
+      <div class="buttons">
+        <button onclick="prevCard()">السابق</button>
+        <button onclick="nextCard()">التالي</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <h2>٢</h2>
+      <p>
+        <span class="quote">يا حق</span> صل وسلم على النبي الحق وعلى آله، صلاة تحقق لنا بها يا حق حقائق الحضرات والنسب والتجليات، ومقامات الأنبياء والمرسلين والأقطاب والأغواث والأولياء، وتعرفنا بها إياها يا ذا المن والإحسان.
+      </p>
+      <div class="buttons">
+        <button onclick="prevCard()">السابق</button>
+        <button onclick="nextCard()">التالي</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    let current = 0;
+    function showCard(index) {
+      cards.forEach((card, i) => {
+        card.classList.toggle('active', i === index);
+      });
+    }
+    function nextCard() {
+      current = (current + 1) % cards.length;
+      showCard(current);
+    }
+    function prevCard() {
+      current = (current - 1 + cards.length) % cards.length;
+      showCard(current);
+    }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>بطاقات عربية</title>
+
+  <!-- Google Font --
+  <link href="https://fonts.googleapis.com/css2?family=Lateef&display=swap" rel="stylesheet">
+
+  <!-- PWA Manifest --
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="apple-touch-icon" href="icons/icon-192.png" />
@@ -98,7 +248,7 @@
 
   <div class="card-container">
 
-    <!-- Card 1 -->
+    <!-- Card 1 --
     <div class="card active">
       <h2>١</h2>
    <p>
@@ -109,14 +259,14 @@
         <!--<span class="quote">اللهم ياالف</span> وَشَكْلَتِهِ ، صَلَاةٌ تُؤلَّفَ لَنَا تِهَا يَا وَاحِدُ يَا أَحَدُ القُلوبَ .
 وَتَفْتَحُ لَنَا الْأَبْوَابَ الْمُعْلَقَةَ بِرَ الْأَلِفِ وَالْبَاءِ وَالتَّقطَةِ
 وَالشَّكْلَةِ يَا ذَا الْجَلالِ وَالإِكْرَام . صَل وَسلم عَلَى الْبَاءِ وَنُقْطَتِهِ)
-      </p>-->
+      </p>--
       <div class="buttons">
         <button onclick="prevCard()">السابق</button>
         <button onclick="nextCard()">التالي</button>
       </div>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Card 2 --
     <div class="card">
       <h2>٢</h2>
       <p>
